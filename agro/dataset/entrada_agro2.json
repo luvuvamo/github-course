@@ -1,23 +1,23 @@
 {
-	"name": "saida_agro1",
+	"name": "entrada_agro2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "conect_saida",
+			"referenceName": "conect_entrada",
 			"type": "LinkedServiceReference"
 		},
 		"type": "AzureBlob",
 		"typeProperties": {
 			"format": {
 				"type": "TextFormat",
-				"columnDelimiter": ",",
+				"columnDelimiter": "|",
 				"rowDelimiter": "",
 				"nullValue": "\\N",
 				"treatEmptyAsNull": true,
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "",
-			"folderPath": "proj-agro/saida/20190401/cliente1.csv"
+			"fileName": "orders_1.csv",
+			"folderPath": "proj-agro/entrada/entrada/20190401/cliente1.csv"
 		}
 	}
 }
