@@ -1,0 +1,29 @@
+{
+	"name": "entrada_agro1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "conect_entrada",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": "|",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "orders_1.csv",
+			"folderPath": "proj-agro/entrada/entrada/20190401/cliente1.csv"
+		}
+	}
+}
