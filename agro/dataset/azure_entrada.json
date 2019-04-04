@@ -1,0 +1,23 @@
+{
+	"name": "azure_entrada",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "conectazurre",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "",
+			"folderPath": "proj-agro/ENTRADA/20190403"
+		}
+	}
+}
