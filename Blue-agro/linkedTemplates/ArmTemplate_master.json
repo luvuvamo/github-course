@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
 		},
+		"aws_conect_entrada_secretAccessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'secretAccessKey' of 'aws_conect_entrada'"
+		},
 		"conect_entrada_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conect_entrada'"
@@ -41,11 +45,15 @@
 		},
 		"saida_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": ""
+			"defaultValue": "@utcnow()"
 		},
 		"saida_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "proj-agro/SAIDA/20190403"
+		},
+		"aws_conect_entrada_properties_typeProperties_accessKeyId": {
+			"type": "string",
+			"defaultValue": "AKIAX2RO257TXINSITXE"
 		},
 		"containerUri": {
 			"type": "string",
@@ -80,6 +88,9 @@
 					"AzureBlobStorage2_connectionString": {
 						"value": "[parameters('AzureBlobStorage2_connectionString')]"
 					},
+					"aws_conect_entrada_secretAccessKey": {
+						"value": "[parameters('aws_conect_entrada_secretAccessKey')]"
+					},
 					"conect_entrada_connectionString": {
 						"value": "[parameters('conect_entrada_connectionString')]"
 					},
@@ -91,6 +102,9 @@
 					},
 					"conectsaida_connectionString": {
 						"value": "[parameters('conectsaida_connectionString')]"
+					},
+					"aws_conect_entrada_properties_typeProperties_accessKeyId": {
+						"value": "[parameters('aws_conect_entrada_properties_typeProperties_accessKeyId')]"
 					},
 					"entrada_properties_typeProperties_fileName": {
 						"value": "[parameters('entrada_properties_typeProperties_fileName')]"

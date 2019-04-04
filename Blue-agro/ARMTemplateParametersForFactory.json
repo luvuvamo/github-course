@@ -11,6 +11,9 @@
 		"AzureBlobStorage2_connectionString": {
 			"value": ""
 		},
+		"aws_conect_entrada_secretAccessKey": {
+			"value": ""
+		},
 		"conect_entrada_connectionString": {
 			"value": ""
 		},
@@ -30,10 +33,13 @@
 			"value": "proj-agro/ENTRADA/20190403"
 		},
 		"saida_properties_typeProperties_fileName": {
-			"value": ""
+			"value": "@utcnow()"
 		},
 		"saida_properties_typeProperties_folderPath": {
 			"value": "proj-agro/SAIDA/20190403"
+		},
+		"aws_conect_entrada_properties_typeProperties_accessKeyId": {
+			"value": "AKIAX2RO257TXINSITXE"
 		}
 	}
 }
