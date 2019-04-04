@@ -1,11 +1,11 @@
 {
-	"name": "saida",
+	"name": "awsentrada",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "conect_saida",
+			"referenceName": "aws_conect_entrada",
 			"type": "LinkedServiceReference"
 		},
-		"type": "AzureBlob",
+		"type": "AmazonS3Object",
 		"structure": [
 			{
 				"name": "Prop_0",
@@ -74,11 +74,7 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": {
-				"value": "@utcnow()",
-				"type": "Expression"
-			},
-			"folderPath": "proj-agro/SAIDA/20190403"
+			"bucketName": "bluetreinamento"
 		}
 	}
 }

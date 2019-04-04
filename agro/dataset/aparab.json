@@ -1,0 +1,22 @@
+{
+	"name": "aparab",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "aws_conect_entrada",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AmazonS3Object",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"bucketName": "bluetreinamento"
+		}
+	}
+}
