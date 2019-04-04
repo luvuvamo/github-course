@@ -47,6 +47,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'saidaconect1'"
 		},
+		"aws_entrada_secretAccessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'secretAccessKey' of 'aws_entrada'"
+		},
+		"conecntbaws_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'conecntbaws'"
+		},
 		"azure_entrada_properties_typeProperties_fileName": {
 			"type": "string",
 			"defaultValue": ""
@@ -66,6 +74,18 @@
 		"aws_conect_entrada_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIAX2RO257TXINSITXE"
+		},
+		"aws_entrada_properties_typeProperties_accessKeyId": {
+			"type": "string",
+			"defaultValue": "AKIAX2RO257TXINSITXE"
+		},
+		"Azure_saida2_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "@utcnow('MMddyyyyhhmms')"
+		},
+		"Azure_saida2_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "proj-agro/SAIDA/20190404"
 		},
 		"containerUri": {
 			"type": "string",
@@ -124,8 +144,17 @@
 					"saidaconect1_connectionString": {
 						"value": "[parameters('saidaconect1_connectionString')]"
 					},
+					"aws_entrada_secretAccessKey": {
+						"value": "[parameters('aws_entrada_secretAccessKey')]"
+					},
+					"conecntbaws_connectionString": {
+						"value": "[parameters('conecntbaws_connectionString')]"
+					},
 					"aws_conect_entrada_properties_typeProperties_accessKeyId": {
 						"value": "[parameters('aws_conect_entrada_properties_typeProperties_accessKeyId')]"
+					},
+					"aws_entrada_properties_typeProperties_accessKeyId": {
+						"value": "[parameters('aws_entrada_properties_typeProperties_accessKeyId')]"
 					},
 					"azure_entrada_properties_typeProperties_fileName": {
 						"value": "[parameters('azure_entrada_properties_typeProperties_fileName')]"
@@ -138,6 +167,12 @@
 					},
 					"azure_saida1_properties_typeProperties_folderPath": {
 						"value": "[parameters('azure_saida1_properties_typeProperties_folderPath')]"
+					},
+					"Azure_saida2_properties_typeProperties_fileName": {
+						"value": "[parameters('Azure_saida2_properties_typeProperties_fileName')]"
+					},
+					"Azure_saida2_properties_typeProperties_folderPath": {
+						"value": "[parameters('Azure_saida2_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
