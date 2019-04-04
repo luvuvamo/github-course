@@ -1,0 +1,11 @@
+{
+	"name": "saida002",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=alphateam;",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkJMVUUtQUdST182MTQ0NjQ1YS05ZGUwLTQ2MzUtYmE4Mi1hMWVkNThlNWIzNjYiDQp9"
+		}
+	}
+}
