@@ -16,11 +16,10 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": {
-				"value": "@utcnow('MMddyyyyhhmms')",
+			"folderPath": {
+				"value": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))",
 				"type": "Expression"
-			},
-			"folderPath": "proj-agro/SAIDA/20190404"
+			}
 		}
 	}
 }
