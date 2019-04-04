@@ -14,6 +14,12 @@
 		"aws_conect_entrada_secretAccessKey": {
 			"value": ""
 		},
+		"aws_entrada_secretAccessKey": {
+			"value": ""
+		},
+		"conecntbaws_connectionString": {
+			"value": ""
+		},
 		"conect_entrada_connectionString": {
 			"value": ""
 		},
@@ -35,11 +41,11 @@
 		"saidaconect1_connectionString": {
 			"value": ""
 		},
-		"aws_entrada_secretAccessKey": {
-			"value": ""
+		"Azure_saida2_properties_typeProperties_fileName": {
+			"value": "@utcnow('MMddyyyyhhmms')"
 		},
-		"conecntbaws_connectionString": {
-			"value": ""
+		"Azure_saida2_properties_typeProperties_folderPath": {
+			"value": "proj-agro/SAIDA/20190404"
 		},
 		"azure_entrada_properties_typeProperties_fileName": {
 			"value": ""
@@ -51,19 +57,13 @@
 			"value": ""
 		},
 		"azure_saida1_properties_typeProperties_folderPath": {
-			"value": "proj-agro/SAIDA/20190404"
+			"value": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))"
 		},
 		"aws_conect_entrada_properties_typeProperties_accessKeyId": {
 			"value": "AKIAX2RO257TXINSITXE"
 		},
 		"aws_entrada_properties_typeProperties_accessKeyId": {
 			"value": "AKIAX2RO257TXINSITXE"
-		},
-		"Azure_saida2_properties_typeProperties_fileName": {
-			"value": "@utcnow('MMddyyyyhhmms')"
-		},
-		"Azure_saida2_properties_typeProperties_folderPath": {
-			"value": "proj-agro/SAIDA/20190404"
 		},
 		"containerUri": {
 			"value": ""
