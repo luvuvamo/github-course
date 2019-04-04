@@ -55,13 +55,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'saidaconect1'"
 		},
-		"Azure_saida2_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": "@utcnow('MMddyyyyhhmms')"
-		},
 		"Azure_saida2_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/SAIDA/20190404"
+			"defaultValue": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))"
 		},
 		"azure_entrada_properties_typeProperties_fileName": {
 			"type": "string",
@@ -69,7 +65,7 @@
 		},
 		"azure_entrada_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190403"
+			"defaultValue": "proj-agro/ENTRADA/20190404"
 		},
 		"azure_saida1_properties_typeProperties_fileName": {
 			"type": "string",
@@ -215,11 +211,10 @@
 						"skipLineCount": 0,
 						"firstRowAsHeader": false
 					},
-					"fileName": {
-						"value": "[parameters('Azure_saida2_properties_typeProperties_fileName')]",
+					"folderPath": {
+						"value": "[parameters('Azure_saida2_properties_typeProperties_folderPath')]",
 						"type": "Expression"
-					},
-					"folderPath": "[parameters('Azure_saida2_properties_typeProperties_folderPath')]"
+					}
 				}
 			},
 			"dependsOn": [
