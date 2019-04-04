@@ -275,6 +275,10 @@
 						"skipLineCount": 0,
 						"firstRowAsHeader": false
 					},
+					"prefix": {
+						"value": "@utcnow()",
+						"type": "Expression"
+					},
 					"bucketName": "bluetreinamento"
 				}
 			},
