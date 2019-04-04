@@ -16,8 +16,7 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "",
-			"folderPath": "proj-agro/SAIDA/20190404"
+			"folderPath": "@utcnow('MMddyyyy')"
 		}
 	}
 }
