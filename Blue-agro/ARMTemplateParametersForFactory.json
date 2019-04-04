@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "Blue-agro"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage2_connectionString": {
+			"value": ""
+		},
+		"conect_entrada_connectionString": {
+			"value": ""
+		},
+		"conect_saida_connectionString": {
+			"value": ""
+		},
+		"conectentrada_connectionString": {
+			"value": ""
+		},
+		"conectsaida_connectionString": {
+			"value": ""
+		},
+		"entrada_properties_typeProperties_fileName": {
+			"value": "client1.csv"
+		},
+		"entrada_properties_typeProperties_folderPath": {
+			"value": "proj-agro/ENTRADA/20190403"
+		},
+		"saida_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"saida_properties_typeProperties_folderPath": {
+			"value": "proj-agro/SAIDA/20190403"
+		}
+	}
+}
