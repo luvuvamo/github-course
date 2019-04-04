@@ -1,0 +1,26 @@
+{
+	"name": "Azure_saida2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "conecntbaws",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": {
+				"value": "@utcnow('MMddyyyyhhmms')",
+				"type": "Expression"
+			},
+			"folderPath": "proj-agro/SAIDA/20190404"
+		}
+	}
+}
