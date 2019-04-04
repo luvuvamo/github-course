@@ -20,23 +20,32 @@
 		"conect_saida_connectionString": {
 			"value": ""
 		},
+		"conectazurre_connectionString": {
+			"value": ""
+		},
 		"conectentrada_connectionString": {
 			"value": ""
 		},
 		"conectsaida_connectionString": {
 			"value": ""
 		},
-		"entrada_properties_typeProperties_fileName": {
-			"value": "client1.csv"
+		"saida002_connectionString": {
+			"value": ""
 		},
-		"entrada_properties_typeProperties_folderPath": {
+		"saidaconect1_connectionString": {
+			"value": ""
+		},
+		"azure_entrada_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"azure_entrada_properties_typeProperties_folderPath": {
 			"value": "proj-agro/ENTRADA/20190403"
 		},
-		"saida_properties_typeProperties_fileName": {
-			"value": "@utcnow()"
+		"azure_saida1_properties_typeProperties_fileName": {
+			"value": ""
 		},
-		"saida_properties_typeProperties_folderPath": {
-			"value": "proj-agro/SAIDA/20190403"
+		"azure_saida1_properties_typeProperties_folderPath": {
+			"value": "proj-agro/SAIDA/20190404"
 		},
 		"aws_conect_entrada_properties_typeProperties_accessKeyId": {
 			"value": "AKIAX2RO257TXINSITXE"

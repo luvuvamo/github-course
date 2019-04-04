@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conect_saida'"
 		},
+		"conectazurre_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'conectazurre'"
+		},
 		"conectentrada_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conectentrada'"
@@ -35,25 +39,33 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conectsaida'"
 		},
+		"saida002_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'saida002'"
+		},
+		"saidaconect1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'saidaconect1'"
+		},
 		"aws_conect_entrada_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIAX2RO257TXINSITXE"
 		},
-		"entrada_properties_typeProperties_fileName": {
+		"azure_entrada_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "client1.csv"
+			"defaultValue": ""
 		},
-		"entrada_properties_typeProperties_folderPath": {
+		"azure_entrada_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "proj-agro/ENTRADA/20190403"
 		},
-		"saida_properties_typeProperties_fileName": {
+		"azure_saida1_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "@utcnow()"
+			"defaultValue": ""
 		},
-		"saida_properties_typeProperties_folderPath": {
+		"azure_saida1_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/SAIDA/20190403"
+			"defaultValue": "proj-agro/SAIDA/20190404"
 		}
 	},
 	"variables": {
@@ -133,6 +145,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/conectazurre')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('conectazurre_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/conectentrada')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -159,192 +184,42 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/aparab')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/saida002')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "aws_conect_entrada",
-					"type": "LinkedServiceReference"
-				},
 				"annotations": [],
-				"type": "AmazonS3Object",
+				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"format": {
-						"type": "TextFormat",
-						"columnDelimiter": ",",
-						"rowDelimiter": "",
-						"nullValue": "\\N",
-						"treatEmptyAsNull": true,
-						"skipLineCount": 0,
-						"firstRowAsHeader": false
-					},
-					"bucketName": "bluetreinamento"
+					"connectionString": "[parameters('saida002_connectionString')]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/aws_conect_entrada')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/awsentrada')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/saidaconect1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "aws_conect_entrada",
-					"type": "LinkedServiceReference"
-				},
 				"annotations": [],
-				"type": "AmazonS3Object",
-				"structure": [
-					{
-						"name": "Prop_0",
-						"type": "String"
-					},
-					{
-						"name": "Prop_1",
-						"type": "String"
-					},
-					{
-						"name": "Prop_2",
-						"type": "String"
-					},
-					{
-						"name": "Prop_3",
-						"type": "String"
-					},
-					{
-						"name": "Prop_4",
-						"type": "String"
-					},
-					{
-						"name": "Prop_5",
-						"type": "String"
-					},
-					{
-						"name": "Prop_6",
-						"type": "String"
-					},
-					{
-						"name": "Prop_7",
-						"type": "String"
-					},
-					{
-						"name": "Prop_8",
-						"type": "String"
-					},
-					{
-						"name": "Prop_9",
-						"type": "String"
-					},
-					{
-						"name": "Prop_10",
-						"type": "String"
-					},
-					{
-						"name": "Prop_11",
-						"type": "String"
-					},
-					{
-						"name": "Prop_12",
-						"type": "String"
-					},
-					{
-						"name": "Prop_13",
-						"type": "String"
-					}
-				],
+				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"format": {
-						"type": "TextFormat",
-						"columnDelimiter": ",",
-						"rowDelimiter": "",
-						"nullValue": "\\N",
-						"treatEmptyAsNull": true,
-						"skipLineCount": 0,
-						"firstRowAsHeader": false
-					},
-					"prefix": {
-						"value": "@utcnow()",
-						"type": "Expression"
-					},
-					"bucketName": "bluetreinamento"
+					"connectionString": "[parameters('saidaconect1_connectionString')]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/aws_conect_entrada')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/entrada')]",
+			"name": "[concat(parameters('factoryName'), '/azure_entrada')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "conectentrada",
+					"referenceName": "conectazurre",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "AzureBlob",
-				"structure": [
-					{
-						"name": "Prop_0",
-						"type": "String"
-					},
-					{
-						"name": "Prop_1",
-						"type": "String"
-					},
-					{
-						"name": "Prop_2",
-						"type": "String"
-					},
-					{
-						"name": "Prop_3",
-						"type": "String"
-					},
-					{
-						"name": "Prop_4",
-						"type": "String"
-					},
-					{
-						"name": "Prop_5",
-						"type": "String"
-					},
-					{
-						"name": "Prop_6",
-						"type": "String"
-					},
-					{
-						"name": "Prop_7",
-						"type": "String"
-					},
-					{
-						"name": "Prop_8",
-						"type": "String"
-					},
-					{
-						"name": "Prop_9",
-						"type": "String"
-					},
-					{
-						"name": "Prop_10",
-						"type": "String"
-					},
-					{
-						"name": "Prop_11",
-						"type": "String"
-					},
-					{
-						"name": "Prop_12",
-						"type": "String"
-					},
-					{
-						"name": "Prop_13",
-						"type": "String"
-					}
-				],
 				"typeProperties": {
 					"format": {
 						"type": "TextFormat",
@@ -355,83 +230,25 @@
 						"skipLineCount": 0,
 						"firstRowAsHeader": false
 					},
-					"fileName": "[parameters('entrada_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('entrada_properties_typeProperties_folderPath')]"
+					"fileName": "[parameters('azure_entrada_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('azure_entrada_properties_typeProperties_folderPath')]"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/conectentrada')]"
+				"[concat(variables('factoryId'), '/linkedServices/conectazurre')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/saida')]",
+			"name": "[concat(parameters('factoryName'), '/azure_saida1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "conect_saida",
+					"referenceName": "saidaconect1",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "AzureBlob",
-				"structure": [
-					{
-						"name": "Prop_0",
-						"type": "String"
-					},
-					{
-						"name": "Prop_1",
-						"type": "String"
-					},
-					{
-						"name": "Prop_2",
-						"type": "String"
-					},
-					{
-						"name": "Prop_3",
-						"type": "String"
-					},
-					{
-						"name": "Prop_4",
-						"type": "String"
-					},
-					{
-						"name": "Prop_5",
-						"type": "String"
-					},
-					{
-						"name": "Prop_6",
-						"type": "String"
-					},
-					{
-						"name": "Prop_7",
-						"type": "String"
-					},
-					{
-						"name": "Prop_8",
-						"type": "String"
-					},
-					{
-						"name": "Prop_9",
-						"type": "String"
-					},
-					{
-						"name": "Prop_10",
-						"type": "String"
-					},
-					{
-						"name": "Prop_11",
-						"type": "String"
-					},
-					{
-						"name": "Prop_12",
-						"type": "String"
-					},
-					{
-						"name": "Prop_13",
-						"type": "String"
-					}
-				],
 				"typeProperties": {
 					"format": {
 						"type": "TextFormat",
@@ -442,81 +259,22 @@
 						"skipLineCount": 0,
 						"firstRowAsHeader": false
 					},
-					"fileName": {
-						"value": "[parameters('saida_properties_typeProperties_fileName')]",
-						"type": "Expression"
-					},
-					"folderPath": "[parameters('saida_properties_typeProperties_folderPath')]"
+					"fileName": "[parameters('azure_saida1_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('azure_saida1_properties_typeProperties_folderPath')]"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/conect_saida')]"
+				"[concat(variables('factoryId'), '/linkedServices/saidaconect1')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/blue-agro')]",
+			"name": "[concat(parameters('factoryName'), '/blob-agro')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "proagro",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": true
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "FileSystemSource",
-								"recursive": true
-							},
-							"sink": {
-								"type": "BlobSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"columnMappings": {
-									"Prop_0": "Prop_0",
-									"Prop_1": "Prop_1",
-									"Prop_2": "Prop_2",
-									"Prop_3": "Prop_3",
-									"Prop_4": "Prop_4",
-									"Prop_5": "Prop_5",
-									"Prop_6": "Prop_6",
-									"Prop_7": "Prop_7",
-									"Prop_8": "Prop_8",
-									"Prop_9": "Prop_9",
-									"Prop_10": "Prop_10",
-									"Prop_11": "Prop_11",
-									"Prop_12": "Prop_12",
-									"Prop_13": "Prop_13"
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "awsentrada",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "saida",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "backup",
+						"name": "azure-agro",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -539,14 +297,14 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "entrada",
+								"referenceName": "azure_entrada",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "saida",
+								"referenceName": "azure_saida1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -556,9 +314,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/awsentrada')]",
-				"[concat(variables('factoryId'), '/datasets/saida')]",
-				"[concat(variables('factoryId'), '/datasets/entrada')]"
+				"[concat(variables('factoryId'), '/datasets/azure_entrada')]",
+				"[concat(variables('factoryId'), '/datasets/azure_saida1')]"
 			]
 		}
 	]
