@@ -30,9 +30,22 @@
 					"translator": {
 						"type": "TabularTranslator",
 						"columnMappings": {
-							"Prop_0": "PartitionKey",
-							"Prop_1": "RowKey",
-							"Prop_2": "Timestamp"
+							"PartitionKey": "PartitionKey",
+							"RowKey": "RowKey",
+							"Prop_0": "Prop_0",
+							"Prop_1": "Prop_1",
+							"Prop_2": "Prop_2",
+							"Prop_3": "Prop_3",
+							"Prop_4": "Prop_4",
+							"Prop_5": "Prop_5",
+							"Prop_6": "Prop_6",
+							"Prop_7": "Prop_7",
+							"Prop_8": "Prop_8",
+							"Prop_9": "Prop_9",
+							"Prop_10": "Prop_10",
+							"Prop_11": "Prop_11",
+							"Prop_12": "Prop_12",
+							"Prop_13": "Prop_13"
 						}
 					}
 				},

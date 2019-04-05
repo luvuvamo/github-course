@@ -8,6 +8,12 @@
 		"type": "AzureBlob",
 		"structure": [
 			{
+				"name": "PartitionKey"
+			},
+			{
+				"name": "RowKey"
+			},
+			{
 				"name": "Prop_0",
 				"type": "String"
 			},
@@ -62,12 +68,6 @@
 			{
 				"name": "Prop_13",
 				"type": "String"
-			},
-			{
-				"name": "clientname"
-			},
-			{
-				"name": "date"
 			}
 		],
 		"typeProperties": {
