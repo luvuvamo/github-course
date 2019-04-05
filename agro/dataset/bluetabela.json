@@ -1,0 +1,65 @@
+{
+	"name": "bluetabela",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "bluetable",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureTable",
+		"structure": [
+			{
+				"name": "PartitionKey",
+				"type": "String"
+			},
+			{
+				"name": "RowKey",
+				"type": "String"
+			},
+			{
+				"name": "Prop_0"
+			},
+			{
+				"name": "Prop_1"
+			},
+			{
+				"name": "Prop_2"
+			},
+			{
+				"name": "Prop_3"
+			},
+			{
+				"name": "Prop_4"
+			},
+			{
+				"name": "Prop_5"
+			},
+			{
+				"name": "Prop_6"
+			},
+			{
+				"name": "Prop_7"
+			},
+			{
+				"name": "Prop_8"
+			},
+			{
+				"name": "Prop_9"
+			},
+			{
+				"name": "Prop_10"
+			},
+			{
+				"name": "Prop_11"
+			},
+			{
+				"name": "Prop_12"
+			},
+			{
+				"name": "Prop_13"
+			}
+		],
+		"typeProperties": {
+			"tableName": "tabelatest"
+		}
+	}
+}

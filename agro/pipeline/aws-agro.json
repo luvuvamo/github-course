@@ -20,7 +20,28 @@
 					"sink": {
 						"type": "BlobSink"
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"Prop_0": "Pop_0",
+							"Prop_1": "Pop_1",
+							"Prop_2": "Pop_2",
+							"Prop_3": "Pop_3",
+							"Prop_4": "Pop_4",
+							"Prop_5": "Pop_5",
+							"Prop_6": "Pop_6",
+							"Prop_7": "Pop_7",
+							"Prop_8": "Pop_8",
+							"Prop_9": "Pop_9",
+							"Prop_10": "Pop_10",
+							"Prop_11": "Pop_11",
+							"Prop_12": "Pop_12",
+							"Prop_13": "Pop_13",
+							"clientname": "clientname",
+							"date": "date"
+						}
+					}
 				},
 				"inputs": [
 					{

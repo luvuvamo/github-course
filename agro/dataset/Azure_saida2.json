@@ -6,6 +6,56 @@
 			"type": "LinkedServiceReference"
 		},
 		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "Pop_0"
+			},
+			{
+				"name": "Pop_1"
+			},
+			{
+				"name": "Pop_2"
+			},
+			{
+				"name": "Pop_3"
+			},
+			{
+				"name": "Pop_4"
+			},
+			{
+				"name": "Pop_5"
+			},
+			{
+				"name": "Pop_6"
+			},
+			{
+				"name": "Pop_7"
+			},
+			{
+				"name": "Pop_8"
+			},
+			{
+				"name": "Pop_9"
+			},
+			{
+				"name": "Pop_10"
+			},
+			{
+				"name": "Pop_11"
+			},
+			{
+				"name": "Pop_12"
+			},
+			{
+				"name": "Pop_13"
+			},
+			{
+				"name": "clientname"
+			},
+			{
+				"name": "date"
+			}
+		],
 		"typeProperties": {
 			"format": {
 				"type": "TextFormat",
