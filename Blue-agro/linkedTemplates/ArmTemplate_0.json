@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
 		},
+		"AzureBlobStorage3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
+		},
 		"aws_conect_entrada_secretAccessKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'secretAccessKey' of 'aws_conect_entrada'"
@@ -22,6 +26,10 @@
 		"aws_entrada_secretAccessKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'secretAccessKey' of 'aws_entrada'"
+		},
+		"bluetable_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'bluetable'"
 		},
 		"conecntbaws_connectionString": {
 			"type": "secureString",
@@ -69,7 +77,7 @@
 		},
 		"azure_entrada_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": ""
+			"defaultValue": "blobs.csv"
 		},
 		"azure_entrada_properties_typeProperties_folderPath": {
 			"type": "string",
@@ -82,6 +90,14 @@
 		"azure_saida1_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))"
+		},
+		"entradatable_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "blobs.csv"
+		},
+		"entradatable_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "proj-agro/ENTRADA/20190404"
 		}
 	},
 	"variables": {
@@ -110,6 +126,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureBlobStorage2_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage3')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage3_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -146,6 +175,19 @@
 						"type": "SecureString",
 						"value": "[parameters('aws_entrada_secretAccessKey')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/bluetable')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureTableStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('bluetable_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -267,6 +309,56 @@
 				},
 				"annotations": [],
 				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "Pop_0"
+					},
+					{
+						"name": "Pop_1"
+					},
+					{
+						"name": "Pop_2"
+					},
+					{
+						"name": "Pop_3"
+					},
+					{
+						"name": "Pop_4"
+					},
+					{
+						"name": "Pop_5"
+					},
+					{
+						"name": "Pop_6"
+					},
+					{
+						"name": "Pop_7"
+					},
+					{
+						"name": "Pop_8"
+					},
+					{
+						"name": "Pop_9"
+					},
+					{
+						"name": "Pop_10"
+					},
+					{
+						"name": "Pop_11"
+					},
+					{
+						"name": "Pop_12"
+					},
+					{
+						"name": "Pop_13"
+					},
+					{
+						"name": "clientname"
+					},
+					{
+						"name": "date"
+					}
+				],
 				"typeProperties": {
 					"format": {
 						"type": "TextFormat",
@@ -298,6 +390,70 @@
 				},
 				"annotations": [],
 				"type": "AmazonS3Object",
+				"structure": [
+					{
+						"name": "Prop_0",
+						"type": "String"
+					},
+					{
+						"name": "Prop_1",
+						"type": "String"
+					},
+					{
+						"name": "Prop_2",
+						"type": "String"
+					},
+					{
+						"name": "Prop_3",
+						"type": "String"
+					},
+					{
+						"name": "Prop_4",
+						"type": "String"
+					},
+					{
+						"name": "Prop_5",
+						"type": "String"
+					},
+					{
+						"name": "Prop_6",
+						"type": "String"
+					},
+					{
+						"name": "Prop_7",
+						"type": "String"
+					},
+					{
+						"name": "Prop_8",
+						"type": "String"
+					},
+					{
+						"name": "Prop_9",
+						"type": "String"
+					},
+					{
+						"name": "Prop_10",
+						"type": "String"
+					},
+					{
+						"name": "Prop_11",
+						"type": "String"
+					},
+					{
+						"name": "Prop_12",
+						"type": "String"
+					},
+					{
+						"name": "Prop_13",
+						"type": "String"
+					},
+					{
+						"name": "clientname"
+					},
+					{
+						"name": "date"
+					}
+				],
 				"typeProperties": {
 					"format": {
 						"type": "TextFormat",
@@ -378,105 +534,167 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/aws-agro')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
+			"name": "[concat(parameters('factoryName'), '/bluetabela')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"activities": [
+				"linkedServiceName": {
+					"referenceName": "bluetable",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureTable",
+				"structure": [
 					{
-						"name": "aws_entrada",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "FileSystemSource",
-								"recursive": true
-							},
-							"sink": {
-								"type": "BlobSink"
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "aws_entrada",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Azure_saida2",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+						"name": "PartitionKey",
+						"type": "String"
+					},
+					{
+						"name": "RowKey",
+						"type": "String"
+					},
+					{
+						"name": "Prop_0"
+					},
+					{
+						"name": "Prop_1"
+					},
+					{
+						"name": "Prop_2"
+					},
+					{
+						"name": "Prop_3"
+					},
+					{
+						"name": "Prop_4"
+					},
+					{
+						"name": "Prop_5"
+					},
+					{
+						"name": "Prop_6"
+					},
+					{
+						"name": "Prop_7"
+					},
+					{
+						"name": "Prop_8"
+					},
+					{
+						"name": "Prop_9"
+					},
+					{
+						"name": "Prop_10"
+					},
+					{
+						"name": "Prop_11"
+					},
+					{
+						"name": "Prop_12"
+					},
+					{
+						"name": "Prop_13"
 					}
 				],
-				"annotations": []
+				"typeProperties": {
+					"tableName": "tabelatest"
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/aws_entrada')]",
-				"[concat(variables('factoryId'), '/datasets/Azure_saida2')]"
+				"[concat(variables('factoryId'), '/linkedServices/bluetable')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/blob-agro')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
+			"name": "[concat(parameters('factoryName'), '/entradatable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"activities": [
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"structure": [
 					{
-						"name": "azure-agro",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "BlobSource",
-								"recursive": true
-							},
-							"sink": {
-								"type": "BlobSink"
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "azure_entrada",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "azure_saida1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+						"name": "PartitionKey"
+					},
+					{
+						"name": "RowKey"
+					},
+					{
+						"name": "Prop_0",
+						"type": "String"
+					},
+					{
+						"name": "Prop_1",
+						"type": "String"
+					},
+					{
+						"name": "Prop_2",
+						"type": "String"
+					},
+					{
+						"name": "Prop_3",
+						"type": "String"
+					},
+					{
+						"name": "Prop_4",
+						"type": "String"
+					},
+					{
+						"name": "Prop_5",
+						"type": "String"
+					},
+					{
+						"name": "Prop_6",
+						"type": "String"
+					},
+					{
+						"name": "Prop_7",
+						"type": "String"
+					},
+					{
+						"name": "Prop_8",
+						"type": "String"
+					},
+					{
+						"name": "Prop_9",
+						"type": "String"
+					},
+					{
+						"name": "Prop_10",
+						"type": "String"
+					},
+					{
+						"name": "Prop_11",
+						"type": "String"
+					},
+					{
+						"name": "Prop_12",
+						"type": "String"
+					},
+					{
+						"name": "Prop_13",
+						"type": "String"
 					}
 				],
-				"annotations": []
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('entradatable_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('entradatable_properties_typeProperties_folderPath')]"
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/azure_entrada')]",
-				"[concat(variables('factoryId'), '/datasets/azure_saida1')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage3')]"
 			]
 		}
 	]
