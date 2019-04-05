@@ -167,6 +167,7 @@
 								"columnMappings": {
 									"PartitionKey": "PartitionKey",
 									"RowKey": "RowKey",
+									"Timestamp": "Timestamp",
 									"Prop_0": "Prop_0",
 									"Prop_1": "Prop_1",
 									"Prop_2": "Prop_2",
