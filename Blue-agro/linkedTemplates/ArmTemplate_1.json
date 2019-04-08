@@ -292,7 +292,9 @@
 							{
 								"referenceName": "bluetabela",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"clientname": "client_agro"
+								}
 							}
 						]
 					}

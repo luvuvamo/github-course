@@ -299,7 +299,9 @@
 							{
 								"referenceName": "bluetabela",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"clientname": "client_agro"
+								}
 							}
 						]
 					}
@@ -658,7 +660,7 @@
 					}
 				],
 				"typeProperties": {
-					"tableName": "teste2"
+					"tableName": "teste3"
 				}
 			},
 			"dependsOn": [
