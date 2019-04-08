@@ -60,7 +60,10 @@
 				"outputs": [
 					{
 						"referenceName": "bluetabela",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"clientname": "client_agro"
+						}
 					}
 				]
 			}

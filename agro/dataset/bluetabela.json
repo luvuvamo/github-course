@@ -104,7 +104,7 @@
 			}
 		],
 		"typeProperties": {
-			"tableName": "teste2"
+			"tableName": "teste3"
 		}
 	}
 }
