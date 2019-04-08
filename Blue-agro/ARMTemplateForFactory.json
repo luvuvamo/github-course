@@ -562,8 +562,8 @@
 				},
 				"parameters": {
 					"clientname": {
-						"type": "String",
-						"defaultValue": "client_agro"
+						"type": "Object",
+						"defaultValue": "itemName"
 					}
 				},
 				"annotations": [],
@@ -660,7 +660,7 @@
 					}
 				],
 				"typeProperties": {
-					"tableName": "teste3"
+					"tableName": "teste01"
 				}
 			},
 			"dependsOn": [
