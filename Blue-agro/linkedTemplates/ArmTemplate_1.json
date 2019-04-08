@@ -241,7 +241,16 @@
 							"secureOutput": false,
 							"secureInput": false
 						},
-						"userProperties": [],
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "proj-agro/ENTRADA/20190404/met/@{concat('*.csv')}"
+							},
+							{
+								"name": "Destination",
+								"value": "teste01"
+							}
+						],
 						"typeProperties": {
 							"source": {
 								"type": "BlobSource",
@@ -293,7 +302,7 @@
 								"referenceName": "bluetabela",
 								"type": "DatasetReference",
 								"parameters": {
-									"clientname": "client_agro"
+									"clientname": "clientblue"
 								}
 							}
 						]
