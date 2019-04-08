@@ -14,6 +14,9 @@
 		"AzureBlobStorage3_connectionString": {
 			"value": ""
 		},
+		"apagarazure_connectionString": {
+			"value": ""
+		},
 		"aws_conect_entrada_secretAccessKey": {
 			"value": ""
 		},
@@ -48,25 +51,25 @@
 			"value": ""
 		},
 		"Azure_saida2_properties_typeProperties_folderPath": {
-			"value": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))"
+			"value": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy'))"
 		},
 		"azure_entrada_properties_typeProperties_fileName": {
-			"value": "blobs.csv"
+			"value": ""
 		},
 		"azure_entrada_properties_typeProperties_folderPath": {
-			"value": "proj-agro/ENTRADA/20190404"
+			"value": "@concat('proj-agro/ENTRADA/','20190404/','met/','*.csv')"
 		},
 		"azure_saida1_properties_typeProperties_fileName": {
 			"value": ""
 		},
 		"azure_saida1_properties_typeProperties_folderPath": {
-			"value": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))"
+			"value": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy/'),'met/')"
 		},
 		"entradatable_properties_typeProperties_fileName": {
-			"value": "blobs.csv"
+			"value": "@concat('*.csv')"
 		},
 		"entradatable_properties_typeProperties_folderPath": {
-			"value": "proj-agro/ENTRADA/20190404"
+			"value": "proj-agro/ENTRADA/20190404/met"
 		},
 		"aws_conect_entrada_properties_typeProperties_accessKeyId": {
 			"value": "AKIAX2RO257TXINSITXE"

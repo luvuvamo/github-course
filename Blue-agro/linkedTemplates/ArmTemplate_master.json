@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
 		},
+		"apagarazure_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'apagarazure'"
+		},
 		"aws_conect_entrada_secretAccessKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'secretAccessKey' of 'aws_conect_entrada'"
@@ -65,15 +69,15 @@
 		},
 		"Azure_saida2_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))"
+			"defaultValue": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy'))"
 		},
 		"azure_entrada_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "blobs.csv"
+			"defaultValue": ""
 		},
 		"azure_entrada_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190404"
+			"defaultValue": "@concat('proj-agro/ENTRADA/','20190404/','met/','*.csv')"
 		},
 		"azure_saida1_properties_typeProperties_fileName": {
 			"type": "string",
@@ -81,15 +85,15 @@
 		},
 		"azure_saida1_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))"
+			"defaultValue": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy/'),'met/')"
 		},
 		"entradatable_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "blobs.csv"
+			"defaultValue": "@concat('*.csv')"
 		},
 		"entradatable_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190404"
+			"defaultValue": "proj-agro/ENTRADA/20190404/met"
 		},
 		"aws_conect_entrada_properties_typeProperties_accessKeyId": {
 			"type": "string",
@@ -134,6 +138,9 @@
 					},
 					"AzureBlobStorage3_connectionString": {
 						"value": "[parameters('AzureBlobStorage3_connectionString')]"
+					},
+					"apagarazure_connectionString": {
+						"value": "[parameters('apagarazure_connectionString')]"
 					},
 					"aws_conect_entrada_secretAccessKey": {
 						"value": "[parameters('aws_conect_entrada_secretAccessKey')]"
@@ -188,12 +195,6 @@
 					},
 					"azure_saida1_properties_typeProperties_folderPath": {
 						"value": "[parameters('azure_saida1_properties_typeProperties_folderPath')]"
-					},
-					"entradatable_properties_typeProperties_fileName": {
-						"value": "[parameters('entradatable_properties_typeProperties_fileName')]"
-					},
-					"entradatable_properties_typeProperties_folderPath": {
-						"value": "[parameters('entradatable_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
@@ -212,6 +213,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"entradatable_properties_typeProperties_fileName": {
+						"value": "[parameters('entradatable_properties_typeProperties_fileName')]"
+					},
+					"entradatable_properties_typeProperties_folderPath": {
+						"value": "[parameters('entradatable_properties_typeProperties_folderPath')]"
 					}
 				}
 			},

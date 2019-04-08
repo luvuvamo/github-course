@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
 		},
+		"apagarazure_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'apagarazure'"
+		},
 		"aws_conect_entrada_secretAccessKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'secretAccessKey' of 'aws_conect_entrada'"
@@ -73,15 +77,15 @@
 		},
 		"Azure_saida2_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))"
+			"defaultValue": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy'))"
 		},
 		"azure_entrada_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": "blobs.csv"
+			"defaultValue": ""
 		},
 		"azure_entrada_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190404"
+			"defaultValue": "@concat('proj-agro/ENTRADA/','20190404/','met/','*.csv')"
 		},
 		"azure_saida1_properties_typeProperties_fileName": {
 			"type": "string",
@@ -89,15 +93,7 @@
 		},
 		"azure_saida1_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))"
-		},
-		"entradatable_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": "blobs.csv"
-		},
-		"entradatable_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190404"
+			"defaultValue": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy/'),'met/')"
 		}
 	},
 	"variables": {
@@ -139,6 +135,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureBlobStorage3_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/apagarazure')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('apagarazure_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -494,7 +503,10 @@
 						"firstRowAsHeader": false
 					},
 					"fileName": "[parameters('azure_entrada_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('azure_entrada_properties_typeProperties_folderPath')]"
+					"folderPath": {
+						"value": "[parameters('azure_entrada_properties_typeProperties_folderPath')]",
+						"type": "Expression"
+					}
 				}
 			},
 			"dependsOn": [
@@ -542,178 +554,111 @@
 					"referenceName": "bluetable",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"clientname": {
+						"type": "String",
+						"defaultValue": "client_agro"
+					}
+				},
 				"annotations": [],
 				"type": "AzureTable",
 				"structure": [
 					{
 						"name": "PartitionKey",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "RowKey",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Timestamp",
 						"type": "DateTimeOffset"
 					},
 					{
+						"name": "clientname",
+						"type": "String",
+						"description": "client_blue"
+					},
+					{
 						"name": "Prop_0",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_1",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_2",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_3",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_4",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_5",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_6",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_7",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_8",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_9",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_10",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
 						"name": "Prop_11",
-						"type": "String"
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
-						"name": "Prop_12"
+						"name": "Prop_12",
+						"type": "String",
+						"description": "client_blue"
 					},
 					{
-						"name": "Prop_13"
+						"name": "Prop_13",
+						"type": "String",
+						"description": "client_blue"
 					}
 				],
 				"typeProperties": {
-					"tableName": "tabelatest"
+					"tableName": "teste2"
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/bluetable')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/entradatable')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage3",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureBlob",
-				"structure": [
-					{
-						"name": "PartitionKey"
-					},
-					{
-						"name": "RowKey"
-					},
-					{
-						"name": "Timestamp"
-					},
-					{
-						"name": "Prop_0",
-						"type": "String"
-					},
-					{
-						"name": "Prop_1",
-						"type": "String"
-					},
-					{
-						"name": "Prop_2",
-						"type": "String"
-					},
-					{
-						"name": "Prop_3",
-						"type": "String"
-					},
-					{
-						"name": "Prop_4",
-						"type": "String"
-					},
-					{
-						"name": "Prop_5",
-						"type": "String"
-					},
-					{
-						"name": "Prop_6",
-						"type": "String"
-					},
-					{
-						"name": "Prop_7",
-						"type": "String"
-					},
-					{
-						"name": "Prop_8",
-						"type": "String"
-					},
-					{
-						"name": "Prop_9",
-						"type": "String"
-					},
-					{
-						"name": "Prop_10",
-						"type": "String"
-					},
-					{
-						"name": "Prop_11",
-						"type": "String"
-					},
-					{
-						"name": "Prop_12",
-						"type": "String"
-					},
-					{
-						"name": "Prop_13",
-						"type": "String"
-					}
-				],
-				"typeProperties": {
-					"format": {
-						"type": "TextFormat",
-						"columnDelimiter": ",",
-						"rowDelimiter": "",
-						"nullValue": "\\N",
-						"treatEmptyAsNull": true,
-						"skipLineCount": 0,
-						"firstRowAsHeader": false
-					},
-					"fileName": "[parameters('entradatable_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('entradatable_properties_typeProperties_folderPath')]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage3')]"
 			]
 		}
 	]
