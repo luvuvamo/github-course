@@ -18,7 +18,7 @@
 			},
 			"fileName": "",
 			"folderPath": {
-				"value": "@concat('proj-agro/SAIDA', utcnow('MMddyyyy'))",
+				"value": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy'))",
 				"type": "Expression"
 			}
 		}
