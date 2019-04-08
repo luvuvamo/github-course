@@ -1,8 +1,8 @@
 {
-	"name": "azure_saida1",
+	"name": "apagarazure",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "saidaconect1",
+			"referenceName": "apagarazure",
 			"type": "LinkedServiceReference"
 		},
 		"type": "AzureBlob",
@@ -18,7 +18,7 @@
 			},
 			"fileName": "",
 			"folderPath": {
-				"value": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy/'),'met/')",
+				"value": "@concat('proj-agro/entrada/20190404')",
 				"type": "Expression"
 			}
 		}

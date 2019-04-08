@@ -1,0 +1,11 @@
+{
+	"name": "testevc",
+	"properties": {
+		"activities": [
+			{
+				"name": "agrofiltro",
+				"type": "Filter"
+			}
+		]
+	}
+}

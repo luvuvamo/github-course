@@ -16,8 +16,11 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "blobs.csv",
-			"folderPath": "proj-agro/ENTRADA/20190404"
+			"fileName": "",
+			"folderPath": {
+				"value": "@concat('proj-agro/ENTRADA/','20190404/','met/','*.csv')",
+				"type": "Expression"
+			}
 		}
 	}
 }
