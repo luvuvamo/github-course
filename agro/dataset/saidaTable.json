@@ -1,0 +1,13 @@
+{
+	"name": "saidaTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "conectablesaida",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureTable",
+		"typeProperties": {
+			"tableName": "geolicalizacao"
+		}
+	}
+}

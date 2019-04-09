@@ -1,0 +1,86 @@
+{
+	"name": "geoline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Getagro",
+				"type": "GetMetadata",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "datasetget",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					]
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Getagro",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Getagro').output.childItems",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "executor",
+							"type": "Copy",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"source": {
+									"type": "BlobSource",
+									"recursive": true
+								},
+								"sink": {
+									"type": "AzureTableSink",
+									"azureTableInsertType": "merge",
+									"azureTableDefaultPartitionKeyValue": {
+										"value": "@item().name",
+										"type": "Expression"
+									},
+									"writeBatchSize": 10003
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "datasetexecutor",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "saidaTable",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			}
+		]
+	}
+}

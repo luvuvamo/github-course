@@ -1,0 +1,91 @@
+{
+	"name": "datasetexecutor",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "conectdatasetexecutor",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "region",
+				"type": "String"
+			},
+			{
+				"name": "country",
+				"type": "String"
+			},
+			{
+				"name": "item_type",
+				"type": "String"
+			},
+			{
+				"name": "sales_channel",
+				"type": "String"
+			},
+			{
+				"name": "order_priority",
+				"type": "String"
+			},
+			{
+				"name": "order_date",
+				"type": "String"
+			},
+			{
+				"name": "order_id",
+				"type": "String"
+			},
+			{
+				"name": "ship_date",
+				"type": "String"
+			},
+			{
+				"name": "units_sold",
+				"type": "String"
+			},
+			{
+				"name": "unit_price",
+				"type": "String"
+			},
+			{
+				"name": "unit_cost",
+				"type": "String"
+			},
+			{
+				"name": "total_revenue",
+				"type": "String"
+			},
+			{
+				"name": "total_cost",
+				"type": "String"
+			},
+			{
+				"name": "total_profit",
+				"type": "String"
+			},
+			{
+				"name": "date",
+				"type": "String"
+			},
+			{
+				"name": "clientname",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"quoteChar": "\"",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "",
+			"folderPath": "proj-agro/ENTRADA/20190409/geol"
+		}
+	}
+}
