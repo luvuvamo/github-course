@@ -7,18 +7,6 @@
 			"metadata": "Data Factory Name",
 			"defaultValue": "Blue-agro"
 		},
-		"AzureBlobStorage3_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
-		},
-		"bluetable_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'bluetable'"
-		},
-		"conecntbaws_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conecntbaws'"
-		},
 		"conect_entrada_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conect_entrada'"
@@ -26,14 +14,6 @@
 		"conect_saida_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conect_saida'"
-		},
-		"conectazurre_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conectazurre'"
-		},
-		"saidaconect1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'saidaconect1'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -62,26 +42,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureBlobStorage3_connectionString": {
-						"value": "[parameters('AzureBlobStorage3_connectionString')]"
-					},
-					"bluetable_connectionString": {
-						"value": "[parameters('bluetable_connectionString')]"
-					},
-					"conecntbaws_connectionString": {
-						"value": "[parameters('conecntbaws_connectionString')]"
-					},
 					"conect_entrada_connectionString": {
 						"value": "[parameters('conect_entrada_connectionString')]"
 					},
 					"conect_saida_connectionString": {
 						"value": "[parameters('conect_saida_connectionString')]"
-					},
-					"conectazurre_connectionString": {
-						"value": "[parameters('conectazurre_connectionString')]"
-					},
-					"saidaconect1_connectionString": {
-						"value": "[parameters('saidaconect1_connectionString')]"
 					}
 				}
 			},

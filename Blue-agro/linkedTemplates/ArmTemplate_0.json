@@ -7,18 +7,6 @@
 			"metadata": "Data Factory Name",
 			"defaultValue": "Blue-agro"
 		},
-		"AzureBlobStorage3_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
-		},
-		"bluetable_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'bluetable'"
-		},
-		"conecntbaws_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conecntbaws'"
-		},
 		"conect_entrada_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conect_entrada'"
@@ -26,59 +14,12 @@
 		"conect_saida_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conect_saida'"
-		},
-		"conectazurre_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conectazurre'"
-		},
-		"saidaconect1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'saidaconect1'"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage3')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobStorage3_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/bluetable')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureTableStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('bluetable_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/conecntbaws')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('conecntbaws_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/conect_entrada')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -103,32 +44,6 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('conect_saida_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/conectazurre')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('conectazurre_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/saidaconect1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('saidaconect1_connectionString')]"
 				}
 			},
 			"dependsOn": []

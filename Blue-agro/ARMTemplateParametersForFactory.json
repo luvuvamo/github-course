@@ -5,25 +5,10 @@
 		"factoryName": {
 			"value": "Blue-agro"
 		},
-		"AzureBlobStorage3_connectionString": {
-			"value": ""
-		},
-		"bluetable_connectionString": {
-			"value": ""
-		},
-		"conecntbaws_connectionString": {
-			"value": ""
-		},
 		"conect_entrada_connectionString": {
 			"value": ""
 		},
 		"conect_saida_connectionString": {
-			"value": ""
-		},
-		"conectazurre_connectionString": {
-			"value": ""
-		},
-		"saidaconect1_connectionString": {
 			"value": ""
 		}
 	}
