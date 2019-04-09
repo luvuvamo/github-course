@@ -24,13 +24,13 @@
 			"value": ""
 		},
 		"datasetexecutor_properties_typeProperties_folderPath": {
-			"value": "proj-agro/ENTRADA/20190409/geol"
+			"value": "@concat('proj-agro/ENTRADA/', utcnow('yyyyMMdd'), '/', dataset().sourcefolder)"
 		},
 		"datasetget_properties_typeProperties_fileName": {
 			"value": ""
 		},
 		"datasetget_properties_typeProperties_folderPath": {
-			"value": "proj-agro/ENTRADA/20190409/geol"
+			"value": "@concat('proj-agro/ENTRADA/', utcnow('yyyyMMdd'), '/', dataset().sourcefolder)"
 		}
 	}
 }

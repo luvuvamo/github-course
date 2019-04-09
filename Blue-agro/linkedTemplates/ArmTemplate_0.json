@@ -33,7 +33,7 @@
 		},
 		"datasetexecutor_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
+			"defaultValue": "@concat('proj-agro/ENTRADA/', utcnow('yyyyMMdd'), '/', dataset().sourcefolder)"
 		},
 		"datasetget_properties_typeProperties_fileName": {
 			"type": "string",
@@ -41,7 +41,7 @@
 		},
 		"datasetget_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
+			"defaultValue": "@concat('proj-agro/ENTRADA/', utcnow('yyyyMMdd'), '/', dataset().sourcefolder)"
 		}
 	},
 	"variables": {
@@ -124,74 +124,13 @@
 					"referenceName": "conectdatasetexecutor",
 					"type": "LinkedServiceReference"
 				},
-				"annotations": [],
-				"type": "AzureBlob",
-				"structure": [
-					{
-						"name": "region",
-						"type": "String"
-					},
-					{
-						"name": "country",
-						"type": "String"
-					},
-					{
-						"name": "item_type",
-						"type": "String"
-					},
-					{
-						"name": "sales_channel",
-						"type": "String"
-					},
-					{
-						"name": "order_priority",
-						"type": "String"
-					},
-					{
-						"name": "order_date",
-						"type": "String"
-					},
-					{
-						"name": "order_id",
-						"type": "String"
-					},
-					{
-						"name": "ship_date",
-						"type": "String"
-					},
-					{
-						"name": "units_sold",
-						"type": "String"
-					},
-					{
-						"name": "unit_price",
-						"type": "String"
-					},
-					{
-						"name": "unit_cost",
-						"type": "String"
-					},
-					{
-						"name": "total_revenue",
-						"type": "String"
-					},
-					{
-						"name": "total_cost",
-						"type": "String"
-					},
-					{
-						"name": "total_profit",
-						"type": "String"
-					},
-					{
-						"name": "date",
-						"type": "String"
-					},
-					{
-						"name": "clientname",
+				"parameters": {
+					"sourcefolder": {
 						"type": "String"
 					}
-				],
+				},
+				"annotations": [],
+				"type": "AzureBlob",
 				"typeProperties": {
 					"format": {
 						"type": "TextFormat",
@@ -205,7 +144,10 @@
 						"firstRowAsHeader": true
 					},
 					"fileName": "[parameters('datasetexecutor_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('datasetexecutor_properties_typeProperties_folderPath')]"
+					"folderPath": {
+						"value": "[parameters('datasetexecutor_properties_typeProperties_folderPath')]",
+						"type": "Expression"
+					}
 				}
 			},
 			"dependsOn": [
@@ -220,6 +162,11 @@
 				"linkedServiceName": {
 					"referenceName": "conectdatasetget",
 					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"sourcefolder": {
+						"type": "String"
+					}
 				},
 				"annotations": [],
 				"type": "AzureBlob",
@@ -236,7 +183,10 @@
 						"firstRowAsHeader": true
 					},
 					"fileName": "[parameters('datasetget_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('datasetget_properties_typeProperties_folderPath')]"
+					"folderPath": {
+						"value": "[parameters('datasetget_properties_typeProperties_folderPath')]",
+						"type": "Expression"
+					}
 				}
 			},
 			"dependsOn": [
@@ -252,10 +202,18 @@
 					"referenceName": "conectablesaida",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"table": {
+						"type": "String"
+					}
+				},
 				"annotations": [],
 				"type": "AzureTable",
 				"typeProperties": {
-					"tableName": "geolicalizacao"
+					"tableName": {
+						"value": "@dataset().table",
+						"type": "Expression"
+					}
 				}
 			},
 			"dependsOn": [
@@ -269,7 +227,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Getagro",
+						"name": "Getgeol",
 						"type": "GetMetadata",
 						"dependsOn": [],
 						"policy": {
@@ -284,7 +242,9 @@
 							"dataset": {
 								"referenceName": "datasetget",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"sourcefolder": "geol"
+								}
 							},
 							"fieldList": [
 								"childItems"
@@ -292,11 +252,11 @@
 						}
 					},
 					{
-						"name": "ForEach1",
+						"name": "ForEach",
 						"type": "ForEach",
 						"dependsOn": [
 							{
-								"activity": "Getagro",
+								"activity": "Getgeol",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -305,12 +265,12 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('Getagro').output.childItems",
+								"value": "@activity('Getgeol').output.childItems",
 								"type": "Expression"
 							},
 							"activities": [
 								{
-									"name": "executor",
+									"name": "executorgeol",
 									"type": "Copy",
 									"dependsOn": [],
 									"policy": {
@@ -341,14 +301,335 @@
 										{
 											"referenceName": "datasetexecutor",
 											"type": "DatasetReference",
-											"parameters": {}
+											"parameters": {
+												"sourcefolder": "geol"
+											}
 										}
 									],
 									"outputs": [
 										{
 											"referenceName": "saidaTable",
 											"type": "DatasetReference",
-											"parameters": {}
+											"parameters": {
+												"table": "geolocalizacao"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/datasetget')]",
+				"[concat(variables('factoryId'), '/datasets/datasetexecutor')]",
+				"[concat(variables('factoryId'), '/datasets/saidaTable')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/metrioline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Getmet",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "datasetget",
+								"type": "DatasetReference",
+								"parameters": {
+									"sourcefolder": "met"
+								}
+							},
+							"fieldList": [
+								"childItems"
+							]
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Getmet",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Getmet').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "executormet",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BlobSource",
+											"recursive": true
+										},
+										"sink": {
+											"type": "AzureTableSink",
+											"azureTableInsertType": "merge",
+											"azureTableDefaultPartitionKeyValue": {
+												"value": "@item().name",
+												"type": "Expression"
+											},
+											"writeBatchSize": 10003
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "datasetexecutor",
+											"type": "DatasetReference",
+											"parameters": {
+												"sourcefolder": "met"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "saidaTable",
+											"type": "DatasetReference",
+											"parameters": {
+												"table": "metereologia"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/datasetget')]",
+				"[concat(variables('factoryId'), '/datasets/datasetexecutor')]",
+				"[concat(variables('factoryId'), '/datasets/saidaTable')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pluline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Getplu",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "datasetget",
+								"type": "DatasetReference",
+								"parameters": {
+									"sourcefolder": "plu"
+								}
+							},
+							"fieldList": [
+								"childItems"
+							]
+						}
+					},
+					{
+						"name": "ForEach2",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Getplu",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Getagro').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "executor2",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BlobSource",
+											"recursive": true
+										},
+										"sink": {
+											"type": "AzureTableSink",
+											"azureTableInsertType": "merge",
+											"azureTableDefaultPartitionKeyValue": {
+												"value": "@item().name",
+												"type": "Expression"
+											},
+											"writeBatchSize": 10003
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "datasetexecutor",
+											"type": "DatasetReference",
+											"parameters": {
+												"sourcefolder": "plu"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "saidaTable",
+											"type": "DatasetReference",
+											"parameters": {
+												"table": "pluviometrico"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/datasetget')]",
+				"[concat(variables('factoryId'), '/datasets/datasetexecutor')]",
+				"[concat(variables('factoryId'), '/datasets/saidaTable')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/taline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetMetadata1",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "datasetget",
+								"type": "DatasetReference",
+								"parameters": {
+									"sourcefolder": "geol"
+								}
+							},
+							"fieldList": [
+								"childItems"
+							]
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Getgeol').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy1",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BlobSource",
+											"recursive": true
+										},
+										"sink": {
+											"type": "AzureTableSink",
+											"azureTableInsertType": "merge",
+											"azureTableDefaultPartitionKeyValue": {
+												"value": "@item().name",
+												"type": "Expression"
+											},
+											"writeBatchSize": 10003
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "datasetexecutor",
+											"type": "DatasetReference",
+											"parameters": {
+												"sourcefolder": "geol"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "saidaTable",
+											"type": "DatasetReference",
+											"parameters": {
+												"table": "geolocalizacao"
+											}
 										}
 									]
 								}

@@ -33,7 +33,7 @@
 		},
 		"datasetexecutor_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
+			"defaultValue": "@concat('proj-agro/ENTRADA/', utcnow('yyyyMMdd'), '/', dataset().sourcefolder)"
 		},
 		"datasetget_properties_typeProperties_fileName": {
 			"type": "string",
@@ -41,7 +41,7 @@
 		},
 		"datasetget_properties_typeProperties_folderPath": {
 			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
+			"defaultValue": "@concat('proj-agro/ENTRADA/', utcnow('yyyyMMdd'), '/', dataset().sourcefolder)"
 		},
 		"containerUri": {
 			"type": "string",
