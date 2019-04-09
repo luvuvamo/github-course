@@ -1,9 +1,9 @@
 {
-	"name": "geoline",
+	"name": "pluline",
 	"properties": {
 		"activities": [
 			{
-				"name": "Getgeol",
+				"name": "Getplu",
 				"type": "GetMetadata",
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -26,11 +26,11 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "ForEach2",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Getgeol",
+						"activity": "Getplu",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -43,7 +43,7 @@
 					},
 					"activities": [
 						{
-							"name": "executor",
+							"name": "executor2",
 							"type": "Copy",
 							"policy": {
 								"timeout": "7.00:00:00",
@@ -73,7 +73,7 @@
 									"referenceName": "datasetexecutor",
 									"type": "DatasetReference",
 									"parameters": {
-										"sourcefolder": "geol"
+										"sourcefolder": "plu"
 									}
 								}
 							],
@@ -82,7 +82,7 @@
 									"referenceName": "saidaTable",
 									"type": "DatasetReference",
 									"parameters": {
-										"table": "geolicalizacao"
+										"table": "pluviometrico"
 									}
 								}
 							]

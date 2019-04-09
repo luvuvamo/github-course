@@ -5,6 +5,11 @@
 			"referenceName": "conectdatasetget",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"sourcefolder": {
+				"type": "String"
+			}
+		},
 		"type": "AzureBlob",
 		"typeProperties": {
 			"format": {
@@ -19,7 +24,10 @@
 				"firstRowAsHeader": true
 			},
 			"fileName": "",
-			"folderPath": "proj-agro/ENTRADA/20190409/geol"
+			"folderPath": {
+				"value": "@concat('proj-agro/ENTRADA/', utcnow('yyyyMMdd'), '/', dataset().sourcefolder)",
+				"type": "Expression"
+			}
 		}
 	}
 }

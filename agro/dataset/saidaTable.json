@@ -5,9 +5,17 @@
 			"referenceName": "conectablesaida",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"table": {
+				"type": "String"
+			}
+		},
 		"type": "AzureTable",
 		"typeProperties": {
-			"tableName": "geolicalizacao"
+			"tableName": {
+				"value": "@dataset().table",
+				"type": "Expression"
+			}
 		}
 	}
 }
