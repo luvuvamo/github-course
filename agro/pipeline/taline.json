@@ -3,6 +3,13 @@
 	"properties": {
 		"activities": [
 			{
+				"name": "ForEach3",
+				"type": "ForEach",
+				"typeProperties": {
+					"isSequential": false
+				}
+			},
+			{
 				"name": "Gettal",
 				"type": "GetMetadata",
 				"policy": {
@@ -22,71 +29,6 @@
 					},
 					"fieldList": [
 						"childItems"
-					]
-				}
-			},
-			{
-				"name": "ForEach3",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Gettal",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('Gettal').output.childItems",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "executortal",
-							"type": "Copy",
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"typeProperties": {
-								"source": {
-									"type": "BlobSource",
-									"recursive": true
-								},
-								"sink": {
-									"type": "AzureTableSink",
-									"azureTableInsertType": "merge",
-									"azureTableDefaultPartitionKeyValue": {
-										"value": "@item().name",
-										"type": "Expression"
-									},
-									"writeBatchSize": 10003
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "datasetexecutor",
-									"type": "DatasetReference",
-									"parameters": {
-										"sourcefolder": "tal"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "saidaTable",
-									"type": "DatasetReference",
-									"parameters": {
-										"table": "talhao"
-									}
-								}
-							]
-						}
 					]
 				}
 			}
