@@ -1,0 +1,23 @@
+{
+	"name": "deleteentrada",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "deleted",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "orders_1.csv",
+			"folderPath": "proj-agro/ENTRADA/20190404/met"
+		}
+	}
+}
