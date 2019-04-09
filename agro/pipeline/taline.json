@@ -38,6 +38,10 @@
 								"sink": {
 									"type": "AzureTableSink",
 									"azureTableInsertType": "merge",
+									"azureTableDefaultPartitionKeyValue": {
+										"value": "@item().name",
+										"type": "Expression"
+									},
 									"writeBatchSize": 10000
 								},
 								"enableStaging": false
