@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "GetMetadata1",
+				"name": "Gettal",
 				"type": "GetMetadata",
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -17,7 +17,7 @@
 						"referenceName": "datasetget",
 						"type": "DatasetReference",
 						"parameters": {
-							"sourcefolder": "geol"
+							"sourcefolder": "tal"
 						}
 					},
 					"fieldList": [
@@ -26,16 +26,24 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "ForEach3",
 				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Gettal",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Getgeol').output.childItems",
+						"value": "@activity('Gettal').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "Copy1",
+							"name": "executortal",
 							"type": "Copy",
 							"policy": {
 								"timeout": "7.00:00:00",
@@ -65,7 +73,7 @@
 									"referenceName": "datasetexecutor",
 									"type": "DatasetReference",
 									"parameters": {
-										"sourcefolder": "geol"
+										"sourcefolder": "tal"
 									}
 								}
 							],
@@ -74,7 +82,7 @@
 									"referenceName": "saidaTable",
 									"type": "DatasetReference",
 									"parameters": {
-										"table": "geolocalizacao"
+										"table": "talhao"
 									}
 								}
 							]
