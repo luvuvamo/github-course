@@ -7,29 +7,9 @@
 			"metadata": "Data Factory Name",
 			"defaultValue": "Blue-agro"
 		},
-		"AzureBlobStorage1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
-		},
-		"AzureBlobStorage2_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
-		},
 		"AzureBlobStorage3_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
-		},
-		"apagarazure_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'apagarazure'"
-		},
-		"aws_conect_entrada_secretAccessKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'secretAccessKey' of 'aws_conect_entrada'"
-		},
-		"aws_entrada_secretAccessKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'secretAccessKey' of 'aws_entrada'"
 		},
 		"bluetable_connectionString": {
 			"type": "secureString",
@@ -51,57 +31,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conectazurre'"
 		},
-		"conectentrada_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conectentrada'"
-		},
-		"conectsaida_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conectsaida'"
-		},
-		"saida002_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'saida002'"
-		},
 		"saidaconect1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'saidaconect1'"
-		},
-		"Azure_saida2_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy'))"
-		},
-		"azure_entrada_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": ""
-		},
-		"azure_entrada_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "@concat('proj-agro/ENTRADA/','20190404/','met/','*.csv')"
-		},
-		"azure_saida1_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": ""
-		},
-		"azure_saida1_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "@concat('proj-agro/SAIDA/', utcnow('MMddyyyy/'),'met/')"
-		},
-		"entradatable_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": "@concat('*.csv')"
-		},
-		"entradatable_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190404/met"
-		},
-		"aws_conect_entrada_properties_typeProperties_accessKeyId": {
-			"type": "string",
-			"defaultValue": "AKIAX2RO257TXINSITXE"
-		},
-		"aws_entrada_properties_typeProperties_accessKeyId": {
-			"type": "string",
-			"defaultValue": "AKIAX2RO257TXINSITXE"
 		},
 		"containerUri": {
 			"type": "string",
@@ -130,23 +62,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureBlobStorage1_connectionString": {
-						"value": "[parameters('AzureBlobStorage1_connectionString')]"
-					},
-					"AzureBlobStorage2_connectionString": {
-						"value": "[parameters('AzureBlobStorage2_connectionString')]"
-					},
 					"AzureBlobStorage3_connectionString": {
 						"value": "[parameters('AzureBlobStorage3_connectionString')]"
-					},
-					"apagarazure_connectionString": {
-						"value": "[parameters('apagarazure_connectionString')]"
-					},
-					"aws_conect_entrada_secretAccessKey": {
-						"value": "[parameters('aws_conect_entrada_secretAccessKey')]"
-					},
-					"aws_entrada_secretAccessKey": {
-						"value": "[parameters('aws_entrada_secretAccessKey')]"
 					},
 					"bluetable_connectionString": {
 						"value": "[parameters('bluetable_connectionString')]"
@@ -163,68 +80,12 @@
 					"conectazurre_connectionString": {
 						"value": "[parameters('conectazurre_connectionString')]"
 					},
-					"conectentrada_connectionString": {
-						"value": "[parameters('conectentrada_connectionString')]"
-					},
-					"conectsaida_connectionString": {
-						"value": "[parameters('conectsaida_connectionString')]"
-					},
-					"saida002_connectionString": {
-						"value": "[parameters('saida002_connectionString')]"
-					},
 					"saidaconect1_connectionString": {
 						"value": "[parameters('saidaconect1_connectionString')]"
-					},
-					"aws_conect_entrada_properties_typeProperties_accessKeyId": {
-						"value": "[parameters('aws_conect_entrada_properties_typeProperties_accessKeyId')]"
-					},
-					"aws_entrada_properties_typeProperties_accessKeyId": {
-						"value": "[parameters('aws_entrada_properties_typeProperties_accessKeyId')]"
-					},
-					"Azure_saida2_properties_typeProperties_folderPath": {
-						"value": "[parameters('Azure_saida2_properties_typeProperties_folderPath')]"
-					},
-					"azure_entrada_properties_typeProperties_fileName": {
-						"value": "[parameters('azure_entrada_properties_typeProperties_fileName')]"
-					},
-					"azure_entrada_properties_typeProperties_folderPath": {
-						"value": "[parameters('azure_entrada_properties_typeProperties_folderPath')]"
-					},
-					"azure_saida1_properties_typeProperties_fileName": {
-						"value": "[parameters('azure_saida1_properties_typeProperties_fileName')]"
-					},
-					"azure_saida1_properties_typeProperties_folderPath": {
-						"value": "[parameters('azure_saida1_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "ArmTemplate_1",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
-			"properties": {
-				"mode": "incremental",
-				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"factoryName": {
-						"value": "[parameters('factoryName')]"
-					},
-					"entradatable_properties_typeProperties_fileName": {
-						"value": "[parameters('entradatable_properties_typeProperties_fileName')]"
-					},
-					"entradatable_properties_typeProperties_folderPath": {
-						"value": "[parameters('entradatable_properties_typeProperties_folderPath')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_0')]"
-			]
 		}
 	]
 }
