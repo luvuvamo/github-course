@@ -17,7 +17,7 @@
 						"referenceName": "datasetget",
 						"type": "DatasetReference",
 						"parameters": {
-							"sourcefolder": "geol"
+							"sourcefolder": "plu"
 						}
 					},
 					"fieldList": [
