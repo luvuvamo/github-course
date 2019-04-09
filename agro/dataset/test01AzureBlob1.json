@@ -1,0 +1,25 @@
+{
+	"name": "test01AzureBlob1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "testAzureBlobStorage4",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ";",
+				"rowDelimiter": "",
+				"quoteChar": "\"",
+				"nullValue": "\\N",
+				"encodingName": null,
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "clientmet.csv",
+			"folderPath": "proj-agro/ENTRADA/20190404/met"
+		}
+	}
+}
