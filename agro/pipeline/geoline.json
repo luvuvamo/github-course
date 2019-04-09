@@ -38,7 +38,7 @@
 				],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Getagro').output.childItems",
+						"value": "@activity('Getgeol').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
@@ -82,7 +82,7 @@
 									"referenceName": "saidaTable",
 									"type": "DatasetReference",
 									"parameters": {
-										"table": "geolicalizacao"
+										"table": "geolocalizacao"
 									}
 								}
 							]
