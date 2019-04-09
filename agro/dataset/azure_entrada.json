@@ -6,6 +6,24 @@
 			"type": "LinkedServiceReference"
 		},
 		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "Prop_1",
+				"type": "String"
+			},
+			{
+				"name": "Prop_2",
+				"type": "String"
+			},
+			{
+				"name": "Prop_3",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
 			"format": {
 				"type": "TextFormat",
@@ -16,11 +34,8 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "",
-			"folderPath": {
-				"value": "@concat('proj-agro/ENTRADA/','20190404/','met/','*.csv')",
-				"type": "Expression"
-			}
+			"fileName": "*.csv",
+			"folderPath": "proj-agro/ENTRADA/20190404/met"
 		}
 	}
 }
