@@ -15,6 +15,34 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conect_saida'"
 		},
+		"conectablesaida_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'conectablesaida'"
+		},
+		"conectdatasetexecutor_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'conectdatasetexecutor'"
+		},
+		"conectdatasetget_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'conectdatasetget'"
+		},
+		"datasetexecutor_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"datasetexecutor_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
+		},
+		"datasetget_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"datasetget_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -47,6 +75,27 @@
 					},
 					"conect_saida_connectionString": {
 						"value": "[parameters('conect_saida_connectionString')]"
+					},
+					"conectablesaida_connectionString": {
+						"value": "[parameters('conectablesaida_connectionString')]"
+					},
+					"conectdatasetexecutor_connectionString": {
+						"value": "[parameters('conectdatasetexecutor_connectionString')]"
+					},
+					"conectdatasetget_connectionString": {
+						"value": "[parameters('conectdatasetget_connectionString')]"
+					},
+					"datasetexecutor_properties_typeProperties_fileName": {
+						"value": "[parameters('datasetexecutor_properties_typeProperties_fileName')]"
+					},
+					"datasetexecutor_properties_typeProperties_folderPath": {
+						"value": "[parameters('datasetexecutor_properties_typeProperties_folderPath')]"
+					},
+					"datasetget_properties_typeProperties_fileName": {
+						"value": "[parameters('datasetget_properties_typeProperties_fileName')]"
+					},
+					"datasetget_properties_typeProperties_folderPath": {
+						"value": "[parameters('datasetget_properties_typeProperties_folderPath')]"
 					}
 				}
 			},

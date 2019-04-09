@@ -6,42 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory Name",
 			"defaultValue": "Blue-agro"
-		},
-		"conect_entrada_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conect_entrada'"
-		},
-		"conect_saida_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conect_saida'"
-		},
-		"conectablesaida_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conectablesaida'"
-		},
-		"conectdatasetexecutor_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conectdatasetexecutor'"
-		},
-		"conectdatasetget_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'conectdatasetget'"
-		},
-		"datasetexecutor_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": ""
-		},
-		"datasetexecutor_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
-		},
-		"datasetget_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": ""
-		},
-		"datasetget_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
 		}
 	},
 	"variables": {
@@ -57,7 +21,6 @@
 					{
 						"name": "Getagro",
 						"type": "GetMetadata",
-						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -65,12 +28,10 @@
 							"secureOutput": false,
 							"secureInput": false
 						},
-						"userProperties": [],
 						"typeProperties": {
 							"dataset": {
 								"referenceName": "datasetget",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							},
 							"fieldList": [
 								"childItems"
@@ -88,7 +49,6 @@
 								]
 							}
 						],
-						"userProperties": [],
 						"typeProperties": {
 							"items": {
 								"value": "@activity('Getagro').output.childItems",
@@ -98,7 +58,6 @@
 								{
 									"name": "executor",
 									"type": "Copy",
-									"dependsOn": [],
 									"policy": {
 										"timeout": "7.00:00:00",
 										"retry": 0,
@@ -106,7 +65,6 @@
 										"secureOutput": false,
 										"secureInput": false
 									},
-									"userProperties": [],
 									"typeProperties": {
 										"source": {
 											"type": "BlobSource",
@@ -126,23 +84,20 @@
 									"inputs": [
 										{
 											"referenceName": "datasetexecutor",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										}
 									],
 									"outputs": [
 										{
 											"referenceName": "saidaTable",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										}
 									]
 								}
 							]
 						}
 					}
-				],
-				"annotations": []
+				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/datasetget')]",
@@ -159,7 +114,6 @@
 					"referenceName": "conectdatasetexecutor",
 					"type": "LinkedServiceReference"
 				},
-				"annotations": [],
 				"type": "AzureBlob",
 				"structure": [
 					{
@@ -239,13 +193,10 @@
 						"skipLineCount": 0,
 						"firstRowAsHeader": true
 					},
-					"fileName": "[parameters('datasetexecutor_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('datasetexecutor_properties_typeProperties_folderPath')]"
+					"fileName": "",
+					"folderPath": "proj-agro/ENTRADA/20190409/geol"
 				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/conectdatasetexecutor')]"
-			]
+			}
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/datasetget')]",
@@ -256,7 +207,6 @@
 					"referenceName": "conectdatasetget",
 					"type": "LinkedServiceReference"
 				},
-				"annotations": [],
 				"type": "AzureBlob",
 				"typeProperties": {
 					"format": {
@@ -270,13 +220,10 @@
 						"skipLineCount": 0,
 						"firstRowAsHeader": true
 					},
-					"fileName": "[parameters('datasetget_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('datasetget_properties_typeProperties_folderPath')]"
+					"fileName": "",
+					"folderPath": "proj-agro/ENTRADA/20190409/geol"
 				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/conectdatasetget')]"
-			]
+			}
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/saidaTable')]",
@@ -287,82 +234,11 @@
 					"referenceName": "conectablesaida",
 					"type": "LinkedServiceReference"
 				},
-				"annotations": [],
 				"type": "AzureTable",
 				"typeProperties": {
 					"tableName": "geolicalizacao"
 				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/conectablesaida')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/conect_entrada')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "conexão de entrada do blog",
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('conect_entrada_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/conect_saida')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "conexão de saída do blob",
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('conect_saida_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/conectablesaida')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureTableStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('conectablesaida_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/conectdatasetexecutor')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('conectdatasetexecutor_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/conectdatasetget')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('conectdatasetget_connectionString')]"
-				}
-			},
-			"dependsOn": []
+			}
 		}
 	]
 }

@@ -14,6 +14,34 @@
 		"conect_saida_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'conect_saida'"
+		},
+		"conectablesaida_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'conectablesaida'"
+		},
+		"conectdatasetexecutor_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'conectdatasetexecutor'"
+		},
+		"conectdatasetget_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'conectdatasetget'"
+		},
+		"datasetexecutor_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"datasetexecutor_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
+		},
+		"datasetget_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"datasetget_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "proj-agro/ENTRADA/20190409/geol"
 		}
 	},
 	"variables": {
@@ -47,6 +75,294 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/conectablesaida')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureTableStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('conectablesaida_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/conectdatasetexecutor')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('conectdatasetexecutor_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/conectdatasetget')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('conectdatasetget_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/datasetexecutor')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "conectdatasetexecutor",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "region",
+						"type": "String"
+					},
+					{
+						"name": "country",
+						"type": "String"
+					},
+					{
+						"name": "item_type",
+						"type": "String"
+					},
+					{
+						"name": "sales_channel",
+						"type": "String"
+					},
+					{
+						"name": "order_priority",
+						"type": "String"
+					},
+					{
+						"name": "order_date",
+						"type": "String"
+					},
+					{
+						"name": "order_id",
+						"type": "String"
+					},
+					{
+						"name": "ship_date",
+						"type": "String"
+					},
+					{
+						"name": "units_sold",
+						"type": "String"
+					},
+					{
+						"name": "unit_price",
+						"type": "String"
+					},
+					{
+						"name": "unit_cost",
+						"type": "String"
+					},
+					{
+						"name": "total_revenue",
+						"type": "String"
+					},
+					{
+						"name": "total_cost",
+						"type": "String"
+					},
+					{
+						"name": "total_profit",
+						"type": "String"
+					},
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "clientname",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"quoteChar": "\"",
+						"nullValue": "\\N",
+						"encodingName": null,
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "[parameters('datasetexecutor_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('datasetexecutor_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/conectdatasetexecutor')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/datasetget')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "conectdatasetget",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"quoteChar": "\"",
+						"nullValue": "\\N",
+						"encodingName": null,
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "[parameters('datasetget_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('datasetget_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/conectdatasetget')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/saidaTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "conectablesaida",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureTable",
+				"typeProperties": {
+					"tableName": "geolicalizacao"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/conectablesaida')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/geoline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Getagro",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "datasetget",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							]
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Getagro",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Getagro').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "executor",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BlobSource",
+											"recursive": true
+										},
+										"sink": {
+											"type": "AzureTableSink",
+											"azureTableInsertType": "merge",
+											"azureTableDefaultPartitionKeyValue": {
+												"value": "@item().name",
+												"type": "Expression"
+											},
+											"writeBatchSize": 10003
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "datasetexecutor",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "saidaTable",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/datasetget')]",
+				"[concat(variables('factoryId'), '/datasets/datasetexecutor')]",
+				"[concat(variables('factoryId'), '/datasets/saidaTable')]"
+			]
 		}
 	]
 }

@@ -10,6 +10,27 @@
 		},
 		"conect_saida_connectionString": {
 			"value": ""
+		},
+		"conectablesaida_connectionString": {
+			"value": ""
+		},
+		"conectdatasetexecutor_connectionString": {
+			"value": ""
+		},
+		"conectdatasetget_connectionString": {
+			"value": ""
+		},
+		"datasetexecutor_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"datasetexecutor_properties_typeProperties_folderPath": {
+			"value": "proj-agro/ENTRADA/20190409/geol"
+		},
+		"datasetget_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"datasetget_properties_typeProperties_folderPath": {
+			"value": "proj-agro/ENTRADA/20190409/geol"
 		}
 	}
 }
